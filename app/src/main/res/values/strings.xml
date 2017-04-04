@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Unit Conversion</string>
+    <string name="header_parallel">Enter value and select units</string>
+    <string name="value_hint">Value</string>
+    <string name="convert_from">Convert from: </string>
+    <string name="convert_to">Convert to: </string>
+    <string name="convert_button">Convert</string>
+</resources>
