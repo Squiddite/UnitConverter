@@ -5,4 +5,10 @@
     <string name="convert_from">Convert from: </string>
     <string name="convert_to">Convert to: </string>
     <string name="convert_button">Convert</string>
+    <string-array name="units_array">
+        <item>Feet</item>
+        <item>Inches</item>
+        <item>Meters</item>
+        <item>Miles</item>
+    </string-array>
 </resources>

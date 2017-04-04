@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.math.RoundingMode;
@@ -16,6 +18,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Spinner spinnerFromUnit = (Spinner) findViewById( R.id.spinnerFromUnit );
+        Spinner spinnerToUnit = (Spinner) findViewById( R.id.spinnerToUnit );
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource( this, R.array.units_array, android.R.layout.simple_spinner_dropdown_item );
+        spinnerFromUnit.setAdapter( adapter );
+        spinnerToUnit.setAdapter( adapter );
 
         doListenerSetup();
 
