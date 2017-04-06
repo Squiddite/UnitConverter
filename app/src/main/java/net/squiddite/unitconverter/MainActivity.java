@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.webkit.ConsoleMessage;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.io.Console;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
@@ -27,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
         doListenerSetup();
 
+        Unit f = new Foot();
+        Unit m = new Meter();
+        
     }
 
     public void doListenerSetup() {
