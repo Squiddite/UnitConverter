@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.io.Console;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -28,10 +29,44 @@ public class MainActivity extends AppCompatActivity {
         spinnerToUnit.setAdapter( adapter );
 
         doListenerSetup();
+        ArrayList<String> a = new ArrayList<String>();
+        a.add( UnitEnum.FOOT.toString() );
+        Boolean x1 = a.contains( "FOOT" );
+        Boolean x2 = a.contains( UnitEnum.FOOT.toString() );
+
+        try {
+            Unit foot = new Meter( 1.0 );
+            Enum test1 = UnitEnum.FOOT;
+            Enum test2 = UnitEnum.POUND;
+            Unit newUnit = foot.convertTo( UnitEnum.INCH.toString() );
+            Boolean found1 = foot.isClassMember( test1.toString() );
+            Boolean found2 = foot.isClassMember( test2.toString() );
+            Boolean found3 = foot.isClassMember( (String) "Pizza" );
+            Boolean found4 = foot.isClassMember( UnitEnum.KILOGRAM.toString() );
+            Boolean found5 = foot.isClassMember( "FOOT" );
+            String info = foot.getName();
+            String info1 = newUnit.getName();
+            foot.isMetric();
+            newUnit.isMetric();
+            foot.set( 5.0 );
+            Number n = foot.get();
+        } catch( Exception e ) {
+            int i = 1;
+        }
 
         Unit f = new Foot();
+        f.set( 5.0 );
+        //String s = Foot.UnitClassMemberEnum.METER.toString();
+        //f.convertTo( Foot.UnitClassMemberEnum.METER.toString() );
         Unit m = new Meter();
-        
+
+        Boolean xcc = test( UnitClassEnum.LENGTH );
+
+
+    }
+
+    public Boolean test( UnitClassEnum e ) {
+        if( e == UnitClassEnum.LENGTH ) { return true; } else { return false; }
     }
 
     public void doListenerSetup() {

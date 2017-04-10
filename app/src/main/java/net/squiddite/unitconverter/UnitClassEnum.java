@@ -2,13 +2,14 @@ package net.squiddite.unitconverter;
 
 // https://crunchify.com/why-and-for-what-should-i-use-enum-java-enum-examples/
 public enum UnitClassEnum {
-    LENGTH(1),
-    WEIGHT(2),
-    VOLUME(3),
-    TIME(4);
+    LENGTH("Length"),
+    WEIGHT("Weight"),
+    VOLUME("Volume"),
+    TIME("Time"),
+    SPEED("Speed");
 
-    private int value;
-    private UnitClassEnum( int value ) {
+    private String value;
+    private UnitClassEnum( String value ) {
         this.value = value;
     }
 }

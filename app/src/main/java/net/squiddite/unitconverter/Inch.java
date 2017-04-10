@@ -1,17 +1,14 @@
 package net.squiddite.unitconverter;
 
-class Foot extends LengthUnit {
-    public Foot( Double v ) {
+class Inch extends LengthUnit {
+    public Inch( Double v ) {
         super( v );
 
-        this.unit = UnitEnum.FOOT.toString();
+        this.unit = UnitEnum.INCH.toString();
         this.isBaseUnit = false;
         this.isMetric = false;
     }
-    public Foot() {
+    public Inch() {
         this( null );
     }
 }
-
-// 0.3048
-// 3.28084
