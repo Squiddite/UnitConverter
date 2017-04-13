@@ -1,11 +1,9 @@
-package net.squiddite.unitconverter;
-
-import android.util.ArrayMap;
+package net.squiddite.unitconverter.unit;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-abstract class Unit {
+public abstract class Unit {
     protected String unit;
     protected Double value;
     protected Boolean isBaseUnit;

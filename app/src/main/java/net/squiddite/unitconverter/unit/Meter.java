@@ -1,6 +1,6 @@
-package net.squiddite.unitconverter;
+package net.squiddite.unitconverter.unit;
 
-class Meter extends LengthUnit {
+public class Meter extends LengthUnit {
     public Meter( Double v ) {
         super( v );
 
@@ -8,6 +8,7 @@ class Meter extends LengthUnit {
         this.isBaseUnit = true;
         this.isMetric = true;
     }
+
     public Meter() {
         this( null );
     }

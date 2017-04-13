@@ -1,6 +1,6 @@
-package net.squiddite.unitconverter;
+package net.squiddite.unitconverter.unit;
 
-class Mile extends LengthUnit {
+public class Mile extends LengthUnit {
     public Mile( Double v ) {
         super( v );
 

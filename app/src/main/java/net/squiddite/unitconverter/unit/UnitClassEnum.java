@@ -1,4 +1,4 @@
-package net.squiddite.unitconverter;
+package net.squiddite.unitconverter.unit;
 
 // https://crunchify.com/why-and-for-what-should-i-use-enum-java-enum-examples/
 public enum UnitClassEnum {

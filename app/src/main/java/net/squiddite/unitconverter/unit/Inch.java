@@ -1,6 +1,6 @@
-package net.squiddite.unitconverter;
+package net.squiddite.unitconverter.unit;
 
-class Inch extends LengthUnit {
+public class Inch extends LengthUnit {
     public Inch( Double v ) {
         super( v );
 

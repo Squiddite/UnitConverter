@@ -1,4 +1,4 @@
-package net.squiddite.unitconverter;
+package net.squiddite.unitconverter.unit;
 
 abstract class LengthUnit extends Unit {
     public LengthUnit( Double v ) {
@@ -18,9 +18,12 @@ abstract class LengthUnit extends Unit {
         this.conversionFactors.put( UnitEnum.MILE.toString(), (Double) 0.000621371 );
 
     }
+
+    /*
     public LengthUnit() {
         this( null );
     }
+    */
 
     final protected Unit getClassForMemberUnit( String s ) {
         LengthUnit newUnit = null;

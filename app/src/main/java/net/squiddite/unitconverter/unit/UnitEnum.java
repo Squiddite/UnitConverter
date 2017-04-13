@@ -1,4 +1,4 @@
-package net.squiddite.unitconverter;
+package net.squiddite.unitconverter.unit;
 
 import java.util.ArrayList;
 import java.util.Collections;
