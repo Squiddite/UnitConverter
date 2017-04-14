@@ -7,6 +7,8 @@ public class Mile extends LengthUnit {
         this.unit = UnitEnum.INCH.toString();
         this.isBaseUnit = false;
         this.isMetric = false;
+
+        this.conversionFactor = 0.000621371;
     }
     public Mile() {
         this( null );

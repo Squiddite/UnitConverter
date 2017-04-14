@@ -6,14 +6,15 @@ import java.util.HashMap;
 public abstract class Unit {
     protected String unit;
     protected Double value;
-    protected Boolean isBaseUnit;
 
     protected String unitClass;
     protected String baseUnit;
-    protected ArrayList<String> memberUnits;
     protected Boolean isMetric;
 
-    protected HashMap<String, Double> conversionFactors;
+    protected Boolean isBaseUnit;
+    protected Double conversionFactor;
+
+    protected ArrayList<String> memberUnits;
 
     public Unit( Double v ) {
         this.unit = null;
@@ -22,8 +23,8 @@ public abstract class Unit {
         this.unitClass = null;
         this.baseUnit = null;
         this.isMetric = null;
+        this.conversionFactor = null;
         this.memberUnits = new ArrayList<String>();
-        this.conversionFactors = new HashMap<String, Double>();
 
         this.set( v );
     }
@@ -47,12 +48,12 @@ public abstract class Unit {
         return this.isBaseUnit;
     }
 
-    public HashMap<String, Double> getConversionFactors() {
-        return this.conversionFactors;
+    public Double getConversionFactorToBase() {
+        return ( 1 / this.conversionFactor );
     }
 
-    public Double getConversionFactorForUnit( String unit ) {
-        return this.conversionFactors.get( unit );
+    public Double getConversionFactorFromBase() {
+        return this.conversionFactor;
     }
 
     public Double get() {
@@ -60,8 +61,12 @@ public abstract class Unit {
     }
 
     // TODO: manage the explicit Double requirement down to a more generic Number if possible
-    public void set( Double v ) {
-        this.value = v;
+    public void set( Number v ) {
+        if( v != null ) {
+            this.value = v.doubleValue();
+        } else {
+            this.value = null;
+        }
     }
 
     public Unit convertTo( String newUnit ) {
@@ -72,7 +77,8 @@ public abstract class Unit {
         // TODO: de-dupe this redundant logic
         if( !this.isBaseUnit() ) {
             baseUnit = getClassForMemberUnit( this.baseUnit );
-            newValue = this.get() * ( 1 / baseUnit.getConversionFactorForUnit( this.getName() ));
+            //newValue = this.get() * ( 1 / baseUnit.getConversionFactorForUnit( this.getName() ));
+            newValue = this.get() * this.getConversionFactorToBase();
             baseUnit.set( newValue );
         } else {
             baseUnit = this;
@@ -80,7 +86,8 @@ public abstract class Unit {
 
         if( baseUnit.getName() != newUnit ) {
             convertedUnit = getClassForMemberUnit( newUnit );
-            newValue = baseUnit.get() * baseUnit.getConversionFactorForUnit( newUnit );
+            //newValue = baseUnit.get() * baseUnit.getConversionFactorForUnit( newUnit );
+            newValue = baseUnit.get() * convertedUnit.getConversionFactorFromBase();
             convertedUnit.set( newValue );
         } else {
             convertedUnit = baseUnit;

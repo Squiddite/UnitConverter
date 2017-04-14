@@ -15,80 +15,74 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
+    private Unit foot, meter;
+    final private Double fivePointTwo = 5.2, negativeFive = -5.0;
+    final private Integer three = 3;
+
     @Before
     public void setup() {
+        this.foot = new Foot();
+        this.meter = new Meter( this.fivePointTwo );
     }
 
     @Test
     public void inheritanceChain() {
-        Unit foot = new Foot();
-        assertThat( foot, instanceOf( Unit.class ));
-        assertThat( foot, instanceOf( LengthUnit.class ));
+        assertThat( this.foot, instanceOf( Unit.class ));
+        assertThat( this.foot, instanceOf( LengthUnit.class ));
+        assertThat( this.meter, instanceOf( Unit.class ));
+        assertThat( this.meter, instanceOf( LengthUnit.class ));
     }
 
     @Test
-    public void nullValueOnDefaultInstantiation() {
-        Foot foot = new Foot();
-        assertEquals( foot.value, null);
+    public void expectedSetProperties() {
+        assertThat( this.foot.value, equalTo( null ));
+        assertThat( this.meter.value, equalTo( this.fivePointTwo ));
     }
 
     @Test
-    public void correctValueOnValuedInstantiation() {
-        Foot foot = new Foot( 5.0 );
-        Double five = 5.0;
+    public void expectedInheritedProperties() {
+        assertThat( this.foot.isMetric, equalTo( false ));
+        assertThat( this.foot.isBaseUnit, equalTo( false ));
+        assertThat( this.foot.unit, equalTo( UnitEnum.FOOT.toString() ));
+        assertThat( this.foot.unitClass, equalTo( UnitClassEnum.LENGTH.toString() ));
+        assertThat( this.foot.baseUnit, equalTo( UnitEnum.METER.toString() ));
 
-        assertThat( foot.value, not( equalTo( null )));
-        assertThat( foot.value, equalTo( five ));
-    }
-
-    @Test
-    public void expectedPropertiesOnInstantiation() {
-        Foot foot = new Foot( 5.0 );
-
-        assertThat( foot.value, equalTo( 5.0 ));
-        assertThat( foot.isMetric, equalTo( false ));
-        assertThat( foot.isBaseUnit, equalTo( false ));
-        assertThat( foot.unit, equalTo( UnitEnum.FOOT.toString() ));
-        assertThat( foot.unitClass, equalTo( UnitClassEnum.LENGTH.toString() ));
-        assertThat( foot.baseUnit, equalTo( UnitEnum.METER.toString() ));
-    }
-
-    @Test
-    public void newInstanceOverwrites() {
-        Foot foot = new Foot( 5.0 );
-        foot = new Foot( 13.0 );
-        assertThat( foot.value, equalTo( 13.0 ));
-    }
-
-    @Test
-    public void setter() {
-        Foot foot = new Foot();
-        Double five = 5.0;
-
-        foot.set( five );
-        assertThat( foot.value, equalTo( five ));
-
-        foot = new Foot( five );
-        foot.set( 13.0 );
-        assertThat( foot.value, equalTo( 13.0 ));
+        assertThat( this.meter.isMetric, equalTo( true ));
+        assertThat( this.meter.isBaseUnit, equalTo( true ));
+        assertThat( this.meter.unit, equalTo( UnitEnum.METER.toString() ));
+        assertThat( this.meter.unitClass, equalTo( UnitClassEnum.LENGTH.toString() ));
+        assertThat( this.meter.baseUnit, equalTo( UnitEnum.METER.toString() ));
     }
 
     @Test
     public void getters() {
-        Foot foot = new Foot( 5.0 );
+        assertThat( this.foot.get(), equalTo( this.foot.value ));
+        assertThat( this.foot.isMetric(), equalTo( this.foot.isMetric ));
+        assertThat( this.foot.isBaseUnit(), equalTo( this.foot.isBaseUnit ));
+        assertThat( this.foot.getName(), equalTo( this.foot.unit ));
+        assertThat( this.foot.unitClass(), equalTo( this.foot.unitClass ));
+        // no current baseUnit getter?
 
-        assertThat( foot.get(), equalTo( foot.value ));
-        assertThat( foot.isMetric(), equalTo( foot.isMetric ));
-        assertThat( foot.isBaseUnit(), equalTo( foot.isBaseUnit ));
-        assertThat( foot.getName(), equalTo( foot.unit ));
-        assertThat( foot.unitClass(), equalTo( foot.unitClass ));
-        // baseUnit?
-
+        assertThat( this.meter.get(), equalTo( this.meter.value ));
     }
 
     @Test
-    public void conversionInstances() {
-        Foot foot = new Foot( 5.0 );
+    public void setter() {
+        this.foot.set( this.fivePointTwo );
+        assertThat( this.foot.get(), equalTo( 5.2 ));
+
+        this.foot.set( this.three );
+        assertThat( this.foot.get(), equalTo( 3.0 ));
+
+        this.foot.set( null );
+        assertThat( this.foot.get(), equalTo( null ));
+
+        this.foot.set( this.negativeFive );
+        assertThat( this.foot.get(), equalTo( -5.0 ));
+    }
+
+    @Test
+    public void conversionFactory() {
 
     }
 }

@@ -7,6 +7,8 @@ public class Inch extends LengthUnit {
         this.unit = UnitEnum.INCH.toString();
         this.isBaseUnit = false;
         this.isMetric = false;
+
+        this.conversionFactor = 39.37008;
     }
     public Inch() {
         this( null );

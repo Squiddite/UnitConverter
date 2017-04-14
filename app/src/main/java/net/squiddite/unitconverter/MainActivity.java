@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import net.squiddite.unitconverter.unit.Foot;
+import net.squiddite.unitconverter.unit.Inch;
 import net.squiddite.unitconverter.unit.Meter;
 import net.squiddite.unitconverter.unit.Unit;
 import net.squiddite.unitconverter.unit.UnitClassEnum;
@@ -39,21 +40,12 @@ public class MainActivity extends AppCompatActivity {
         Boolean x2 = a.contains( UnitEnum.FOOT.toString() );
 
         try {
-            Unit foot = new Meter( 1.0 );
-            Enum test1 = UnitEnum.FOOT;
-            Enum test2 = UnitEnum.POUND;
-            Unit newUnit = foot.convertTo( UnitEnum.INCH.toString() );
-            Boolean found1 = foot.isClassMember( test1.toString() );
-            Boolean found2 = foot.isClassMember( test2.toString() );
-            Boolean found3 = foot.isClassMember( (String) "Pizza" );
-            Boolean found4 = foot.isClassMember( UnitEnum.KILOGRAM.toString() );
-            Boolean found5 = foot.isClassMember( "FOOT" );
-            String info = foot.getName();
-            String info1 = newUnit.getName();
-            foot.isMetric();
-            newUnit.isMetric();
-            foot.set( 5.0 );
-            Number n = foot.get();
+            Unit unit1 = new Meter( 1.0 );
+            Inch unit2 = (Inch) unit1.convertTo( UnitEnum.INCH.toString() );
+            unit2.set( 69 );
+            Unit unit3 = unit2.toFeet();
+            Number n = unit2.get();
+            Integer i = 5;
         } catch( Exception e ) {
             int i = 1;
         }
